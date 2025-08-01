@@ -8,74 +8,78 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Poppins', sans-serif; }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body class="bg-[#f7f2fa] text-[#192946]">
 
   <!-- Header / Logo -->
   <header class="bg-[#604176] text-white py-12 px-4 shadow-xl">
-  <div class="max-w-3xl mx-auto text-center space-y-0">
-    <!-- Title -->
-    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">
-      <br>Manifesting</br> 
-      Milestones
-    </h1>
-    <img src="logo_1.png" alt="Logo" class="mx-auto w-24 md:w-28 invert" />
-    <!-- Tagline -->
-    <p class="text-lg md:text-xl italic text-[#f7f2fa]">
-      Meet me in the next chapter
-    </p>
-  </div>
-</header>
-
+    <div class="max-w-4xl mx-auto text-center space-y-2 fade-in">
+      <img src="logo_1.png" alt="Logo" class="mx-auto w-24 md:w-28 invert" />
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Manifesting Milestones</h1>
+      <p class="text-lg md:text-xl italic">Meet me in the next chapter</p>
+    </div>
+  </header>
 
   <!-- Hero Section -->
-  <section class="py-16 px-6 bg-[#f7f2fa]">
-    <div class="max-w-4xl mx-auto text-lg leading-relaxed text-[#192946] space-y-10">
+  <section class="py-20 px-6 bg-[#f7f2fa]">
+    <div class="max-w-5xl mx-auto text-lg leading-relaxed space-y-10 fade-in">
       <div class="text-center">
         <h2 class="text-3xl font-bold text-[#604176] mb-4">Hello and welcome!</h2>
         <p class="italic">Navigating English with confidence, culture, and clarity.</p>
       </div>
 
-      <p><strong>I'm a Canadian who's been living in Brazil for some years now.</strong> As someone navigating life in a second language, I understand how frustrating it can be when you can’t express yourself the way you want to — especially when you're already at an intermediate level and craving more than just textbook English. Let’s face it, textbook English is helpful when you are a beginner, but you don’t want to sound robotic forever, do you?</p>
+      <div class="grid gap-6">
+        <p><strong>I'm a Canadian who's been living in Brazil for some years now.</strong> As someone navigating life in a second language, I understand how frustrating it can be when you can’t express yourself the way you want to...</p>
 
-      <p><strong>I’m an online Conversational English and Self-Expression Coach.</strong> I specialize in helping people who want to sound more natural and confident in real-life English. Something I’ve learned from living in Brazil is that language and culture are inseparable. It’s not just about sounding like a native — it’s about understanding natives when they speak.</p>
+        <p><strong>I’m an online Conversational English and Self-Expression Coach.</strong> I specialize in helping people who want to sound more natural and confident in real-life English...</p>
 
-      <p><strong>Communication goes both ways.</strong> When you’re moving between cultures, you need more than grammar rules — you need cultural insight. That’s where I come in. Being familiar with both Brazilian and Canadian cultures, I help bridge that gap. I understand the common challenges, misunderstandings, and unique expressions that can trip people up, and I help you navigate them with clarity and confidence.</p>
+        <p><strong>Communication goes both ways.</strong> When you’re moving between cultures, you need more than grammar rules — you need cultural insight...</p>
 
-      <div class="bg-white border-l-4 border-[#604176] p-4 shadow-sm">
-        <p class="italic">This isn’t a traditional ESL class. There are no grammar drills or textbooks here.</p>
-        <p>I offer a relaxed, supportive space where you can speak freely, make mistakes without judgment, and grow into the confident English speaker you want to be. Grammar correction happens gently and only when needed for clarity. The focus is on communication, not perfection.</p>
+        <div class="bg-white border-l-4 border-[#604176] p-6 shadow-md rounded">
+          <p class="italic">This isn’t a traditional ESL class. There are no grammar drills or textbooks here.</p>
+          <p>I offer a relaxed, supportive space where you can speak freely, make mistakes without judgment, and grow...</p>
+        </div>
+
+        <p><strong>You’ll learn how native speakers really talk:</strong> idioms, slang, expressions, humour, and the flow of natural conversation...</p>
+
+        <p>We’ll talk about your life, goals, culture, challenges, and anything else you’d talk about with a trusted friend...</p>
+
+        <p><strong>Whether you're looking to:</strong> feel more natural in conversation, gain confidence in meetings, express yourself more clearly in social situations...</p>
+
+        <p>I bring patience, positivity, and personal experience of what it feels like to be in your shoes.</p>
       </div>
-
-      <p><strong>You’ll learn how native speakers really talk:</strong> idioms, slang, expressions, humour, and the flow of natural conversation. It’s not just about learning English — it's about using it to express <em>you</em>.</p>
-
-      <p>We’ll talk about your life, goals, culture, challenges, and anything else you’d talk about with a trusted friend (with a bit more structure and professional guidance, of course!). Have a question you’re normally embarrassed to ask? Don’t be! You can run it by me first, in a safe space where you can experiment, learn, and feel prepared for the real world.</p>
-
-      <p><strong>Whether you're looking to:</strong> feel more natural in conversation, gain confidence in meetings, express yourself more clearly in social situations, or simply enjoy a deeper connection to the English-speaking world — I’m here to help.</p>
-
-      <p>I bring patience, positivity, and personal experience of what it feels like to be in your shoes.</p>
     </div>
   </section>
 
   <!-- Visual Section -->
-  <section class="py-16 px-6 bg-white grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+  <section class="py-20 px-6 bg-white grid grid-cols-1 md:grid-cols-2 items-center gap-10 fade-in">
     <div class="flex justify-center">
-      <img src="relax.jpeg" alt="Relaxing Setup" class="w-[300px] h-auto object-cover rounded-lg shadow-2xl">
+      <img src="relax.jpeg" alt="Relaxing Setup" class="w-full max-w-sm object-cover rounded-xl shadow-2xl">
     </div>
     <div class="text-lg space-y-4">
-      <h3 class="text-2xl font-semibold text-[#604176]">Together, we’ll do more than just introduce you to the world.</h3>
-      <p class="text-gray-800"><br>We’ll show the world who you are — because the world needs your voice.</p>
+      <h3 class="text-3xl font-semibold text-[#604176]">We’ll show the world who you are.</h3>
+      <p class="text-gray-800">Together, we’ll do more than just introduce you to the world — because the world needs your voice.</p>
     </div>
   </section>
 
-
   <!-- Contact Section -->
-  <section class="py-16 px-6 bg-[#f7f2fa] text-center">
+  <section class="py-20 px-6 bg-[#f7f2fa] text-center fade-in">
     <h2 class="text-3xl font-semibold">Let’s Start Your Journey</h2>
     <p class="mt-3 text-lg">Want to feel more natural and confident in English?</p>
-    <p class="mt-2 text-lg font-medium text-[#604176]">📱 WhatsApp me at: <a href="https://wa.me/5511999999999" class="underline" target="_blank">+55 11 99999-9999</a></p>
-    <p class="mt-4 text-lg font-medium text-[#604176]">📧 Email me at: <a href="mailto:nicolepimenta21@example.com" class="underline">nicolepimenta21@gmail.com</a></p>
+    <p class="mt-2 text-lg font-medium text-[#604176]">📱 WhatsApp me: <a href="https://wa.me/5511999999999" class="underline" target="_blank">+55 11 99999-9999</a></p>
+    <p class="mt-4 text-lg font-medium text-[#604176]">📧 Email: <a href="mailto:nicolepimenta21@example.com" class="underline">nicolepimenta21@gmail.com</a></p>
     <img src="relax.jpeg" alt="Coach Portrait" class="mx-auto mt-10 w-40 h-40 object-cover rounded-full border-4 border-[#604176] shadow-xl">
   </section>
 
