@@ -7,7 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', sans-serif; }
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -19,6 +21,18 @@
         transform: translateY(0);
       }
     }
+    .section-wrapper {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+    .highlight {
+      font-weight: 600;
+      color: #604176;
+    }
+    .italic-text {
+      font-style: italic;
+      color: #463a69;
+    }
   </style>
 </head>
 <body class="bg-[#f7f2fa] text-[#192946]">
@@ -26,47 +40,49 @@
   <!-- Header / Logo -->
   <header class="bg-[#604176] text-white py-12 px-4 shadow-xl">
     <div class="max-w-4xl mx-auto text-center space-y-2 fade-in">
-      <img src="logo_1.png" alt="Logo" class="mx-auto w-24 md:w-28 invert" />
+      <img src="logo_1.png" alt="Logo" class="mx-auto w-24 md:w-28 invert animate-bounce" />
       <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Manifesting Milestones</h1>
       <p class="text-lg md:text-xl italic">Meet me in the next chapter</p>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="py-20 px-6 bg-[#f7f2fa]">
+  <section class="section-wrapper px-6 bg-[#f7f2fa]">
     <div class="max-w-5xl mx-auto text-lg leading-relaxed space-y-10 fade-in">
       <div class="text-center">
         <h2 class="text-3xl font-bold text-[#604176] mb-4">Hello and welcome!</h2>
-        <p class="italic">Navigating English with confidence, culture, and clarity.</p>
+        <p class="italic-text">Navigating English with confidence, culture, and clarity.</p>
       </div>
 
       <div class="grid gap-6">
-        <p><strong>I'm a Canadian who's been living in Brazil for some years now.</strong> As someone navigating life in a second language, I understand how frustrating it can be when you can’t express yourself the way you want to...</p>
+        <p><span class="highlight">I'm a Canadian</span> who's been living in Brazil for some years now. As someone navigating life in a second language, I understand how frustrating it can be when you can’t express yourself the way you want to, especially when you're already at an intermediate level and craving more than just textbook English. Let’s face it, textbook English is helpful when you are a beginner, but you don’t want to sound robotic forever, do you?</p>
 
-        <p><strong>I’m an online Conversational English and Self-Expression Coach.</strong> I specialize in helping people who want to sound more natural and confident in real-life English...</p>
+        <p><span class="highlight">I’m an online Conversational English and Self-Expression Coach</span>, and I specialize in helping people who want to sound more natural and confident in real-life English. Something I’ve learned from living in Brazil is that <span class="italic-text">language and culture are inseparable</span>. It’s not just about sounding like a native; it’s about understanding natives when they speak. Communication goes both ways. When you’re moving between cultures, you need more than grammar rules — you need cultural insight. That’s where I come in.</p>
 
-        <p><strong>Communication goes both ways.</strong> When you’re moving between cultures, you need more than grammar rules — you need cultural insight...</p>
+        <p>Being familiar with both Brazilian and Canadian cultures, I help bridge that gap. I understand the common challenges, misunderstandings, and unique expressions that can trip people up, and I help you navigate them with clarity and confidence.</p>
 
         <div class="bg-white border-l-4 border-[#604176] p-6 shadow-md rounded">
-          <p class="italic">This isn’t a traditional ESL class. There are no grammar drills or textbooks here.</p>
-          <p>I offer a relaxed, supportive space where you can speak freely, make mistakes without judgment, and grow...</p>
+          <p class="italic-text">This isn’t a traditional ESL class.</p>
+          <p>I offer a <span class="highlight">relaxed, supportive space</span> where you can speak freely, make mistakes without judgment, and grow into the confident English speaker you want to be. Grammar correction happens gently and only when needed for clarity. <span class="italic-text">The focus is on communication, not perfection.</span> We know we’re doing well when we understand each other and conversation feels natural!</p>
         </div>
 
-        <p><strong>You’ll learn how native speakers really talk:</strong> idioms, slang, expressions, humour, and the flow of natural conversation...</p>
+        <p>You’ll learn how native speakers really talk: <span class="highlight">idioms, slang, expressions, humour</span>, and the flow of natural conversation. It’s not just about learning English….. It's about <span class="italic-text">using it to express you</span>!</p>
 
-        <p>We’ll talk about your life, goals, culture, challenges, and anything else you’d talk about with a trusted friend...</p>
+        <p>We’ll talk about your <span class="highlight">life, goals, culture, and challenges</span> — just like you would with a trusted friend (with a bit more structure and professional guidance, of course!). Have a question you’re normally embarrassed to ask? Don’t be! You can run it by me first, in a <span class="italic-text">safe space</span> where you can experiment, learn, and feel prepared for the real world.</p>
 
-        <p><strong>Whether you're looking to:</strong> feel more natural in conversation, gain confidence in meetings, express yourself more clearly in social situations...</p>
+        <p>Whether you're looking to feel <span class="highlight">more natural in conversation</span>, gain confidence in meetings, express yourself more clearly in social situations, or simply enjoy a deeper connection to the English-speaking world, <span class="highlight">I’m here to help</span>.</p>
 
-        <p>I bring patience, positivity, and personal experience of what it feels like to be in your shoes.</p>
+        <p>I bring <span class="highlight">patience, positivity</span>, and personal experience of what it feels like to be in your shoes.</p>
+
+        <p class="text-xl font-medium">Together, we’ll do more than just introduce you to the world. We’ll show the world who you are — because <span class="highlight">the world needs your voice</span>.</p>
       </div>
     </div>
   </section>
 
   <!-- Visual Section -->
-  <section class="py-20 px-6 bg-white grid grid-cols-1 md:grid-cols-2 items-center gap-10 fade-in">
+  <section class="section-wrapper px-6 bg-white grid grid-cols-1 md:grid-cols-2 items-center gap-10 fade-in">
     <div class="flex justify-center">
-      <img src="relax.jpeg" alt="Relaxing Setup" class="w-full max-w-sm object-cover rounded-xl shadow-2xl">
+      <img src="relax.jpeg" alt="Relaxing Setup" class="w-full max-w-sm object-cover rounded-xl shadow-2xl hover:scale-105 transition-transform duration-300">
     </div>
     <div class="text-lg space-y-4">
       <h3 class="text-3xl font-semibold text-[#604176]">We’ll show the world who you are.</h3>
@@ -75,12 +91,12 @@
   </section>
 
   <!-- Contact Section -->
-  <section class="py-20 px-6 bg-[#f7f2fa] text-center fade-in">
+  <section class="section-wrapper px-6 bg-[#f7f2fa] text-center fade-in">
     <h2 class="text-3xl font-semibold">Let’s Start Your Journey</h2>
     <p class="mt-3 text-lg">Want to feel more natural and confident in English?</p>
-    <p class="mt-2 text-lg font-medium text-[#604176]">📱 WhatsApp me: <a href="https://wa.me/5511999999999" class="underline" target="_blank">+55 11 99999-9999</a></p>
-    <p class="mt-4 text-lg font-medium text-[#604176]">📧 Email: <a href="mailto:nicolepimenta21@example.com" class="underline">nicolepimenta21@gmail.com</a></p>
-    <img src="relax.jpeg" alt="Coach Portrait" class="mx-auto mt-10 w-40 h-40 object-cover rounded-full border-4 border-[#604176] shadow-xl">
+    <p class="mt-2 text-lg font-medium text-[#604176]">📱 WhatsApp me: <a href="https://wa.me/5511999999999" class="underline hover:text-[#463a69] transition-colors duration-200" target="_blank">+55 11 99999-9999</a></p>
+    <p class="mt-4 text-lg font-medium text-[#604176]">📧 Email: <a href="mailto:nicolepimenta21@example.com" class="underline hover:text-[#463a69] transition-colors duration-200">nicolepimenta21@gmail.com</a></p>
+    <img src="relax.jpeg" alt="Coach Portrait" class="mx-auto mt-10 w-40 h-40 object-cover rounded-full border-4 border-[#604176] shadow-xl hover:scale-105 transition-transform duration-300">
   </section>
 
   <!-- Footer -->
