@@ -1,254 +1,436 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Manifest Milestones | English Coach</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
   <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #254336;
+      background-color: #DAD3BE;
+      line-height: 1.6;
+      scroll-behavior: smooth; /* smooth scroll */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Logo color tint */
     .logo-tint {
       filter: sepia(1) saturate(3) hue-rotate(50deg) brightness(0.85);
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #254336;
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease-out forwards;
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    /* Section padding */
     .section-wrapper {
       padding-top: 5rem;
       padding-bottom: 5rem;
     }
+
+    /* Highlighted text */
     .highlight {
       font-weight: 600;
       color: #6B8A7A;
     }
+
+    /* Italic styling */
     .italic-text {
       font-style: italic;
       color: #254336;
     }
+
+    /* Font families for special headings */
     .noto-serif {
       font-family: 'Noto Serif', serif;
     }
+
     .crimson-pro {
       font-family: 'Crimson Pro', serif;
     }
+
+    /* Accessible focus for links */
+    a:focus-visible {
+      outline: 3px solid #6B8A7A;
+      outline-offset: 3px;
+    }
+
+    /* Link hover and focus transitions */
+    a:hover,
+    a:focus {
+      color: #4a6e56;
+      text-decoration: underline;
+      transition: color 0.25s ease;
+    }
+
+    /* Headings scroll margin for anchors */
+    h1, h2, h3 {
+      scroll-margin-top: 5rem;
+    }
+
+    /* Testimonial card uniform min height */
+    .testimonial-card {
+      min-height: 210px;
+    }
+
+    /* Smooth scaling on hover */
+    .hover-scale:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+
+    /* Fade-in animation for sections */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sticky navbar */
+    nav {
+      background-color: #254336cc; /* semi-transparent for slight blur */
+      backdrop-filter: saturate(180%) blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+    }
+
+    /* Nav link hover */
+    nav a:hover,
+    nav a:focus {
+      color: #B7B597;
+      text-decoration: underline;
+    }
+
+    /* Hamburger icon styles */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 24px;
+      height: 24px;
+    }
+    .hamburger span {
+      width: 24px;
+      height: 3px;
+      background-color: #B7B597;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Responsive nav */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #254336cc;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 0;
+        box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links a {
+        padding: 0.75rem 1.5rem;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Back to top button */
+    #backToTopBtn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: #6B8A7A;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
+      transition: background-color 0.3s ease;
+      z-index: 1100;
+    }
+    #backToTopBtn:hover,
+    #backToTopBtn:focus {
+      background-color: #4a6e56;
+      outline: none;
+    }
+
   </style>
 </head>
-<body class="bg-[#DAD3BE] text-[#254336]">
+<body>
 
-  <!-- Header / Logo -->
-  <header class="bg-[#254336] text-[#B7B597] py-8 px-4 shadow-xl">
+  <!-- Navigation Bar -->
+  <nav class="text-[#B7B597] px-6 py-3 flex items-center justify-between max-w-6xl mx-auto">
+    <a href="#top" class="text-xl font-bold noto-serif tracking-wide">Manifest Milestones</a>
+
+    <!-- Hamburger menu for mobile -->
+    <button aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-navigation" id="menu-btn" class="hamburger" >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div id="primary-navigation" class="nav-links flex space-x-8 font-medium text-lg">
+      <a href="#about" class="hover:text-[#B7B597] focus:outline-none focus:ring-2 focus:ring-[#6B8A7A] rounded">About</a>
+      <a href="#how" class="hover:text-[#B7B597] focus:outline-none focus:ring-2 focus:ring-[#6B8A7A] rounded">How I Help</a>
+      <a href="#testimonials" class="hover:text-[#B7B597] focus:outline-none focus:ring-2 focus:ring-[#6B8A7A] rounded">Testimonials</a>
+      <a href="#contact" class="hover:text-[#B7B597] focus:outline-none focus:ring-2 focus:ring-[#6B8A7A] rounded">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <header id="top" class="bg-[#254336] text-[#B7B597] py-10 px-4 shadow-xl">
     <div class="max-w-4xl mx-auto text-center fade-in">
       <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 noto-serif">Manifesting Milestones</h1>
-      <img src="cropped_white_logo.png" alt="Logo" class="mx-auto w-24 md:w-28 mb-4 logo-tint" />
-      <p class="text-lg md:text-xl italic -mt-10 crimson-pro">Meet me in the next chapter</p>
+      <img src="cropped_white_logo.png" alt="Manifest Milestones Logo" class="mx-auto w-24 md:w-28 mb-4 logo-tint" />
+      <p class="text-lg md:text-xl italic crimson-pro -mt-8">Meet me in the next chapter</p>
     </div>
   </header>
 
-  <section class="section-wrapper px-6 bg-[#F5F1E5] text-[#254336] text-lg leading-relaxed max-w-5xl mx-auto space-y-8 fade-in">
-    <h2 class="text-3xl font-bold text-center text-[#254336]">Hello and welcome to <span class="text-[#6B8A7A]">Manifesting Milestones</span> with Nicole!</h2>
-    <p>
-      I'm a <span class="font-semibold">Canadian</span> who's been living in <span class="font-semibold">Brazil</span> for some years now. As someone navigating life in a second language, I understand how frustrating it can be when you can’t express yourself the way you want to, especially when you're already at an <span class="italic">intermediate level</span> and craving more than just textbook English. 
-      <span class="font-semibold text-[#6B8A7A]">Let’s face it</span>, textbook English is helpful when you're a beginner, but you don’t want to sound robotic forever, do you?
-    </p>
-    <p>
-      I’m an <span class="font-semibold">online Communication and Self-Expression Coach</span>, and I specialize in helping people who want to express themselves more naturally and confidently in real-life English. Something I’ve learned from living in Brazil is that <span class="underline underline-offset-2">language and culture are inseparable</span>. It’s not just about sounding like a native; it’s about <span class="font-semibold">understanding natives when they speak</span>.
-    </p>
-    <p>
-      <span class="font-semibold">Communication goes both ways.</span> When you’re moving between cultures, you need more than grammar rules — you need <span class="text-[#6B8A7A] font-medium">cultural insight</span>. That’s where I come in.
-    </p>
-    <p>
-      Being familiar with both <span class="font-semibold">Brazilian and Canadian cultures</span>, I help bridge that gap. I understand the common challenges, misunderstandings, and unique expressions that can trip people up, and I help you navigate them with <span class="italic">clarity and confidence</span>.
-    </p>
-    <p class="bg-white border-l-4 border-[#6B8A7A] p-4 shadow-sm rounded-md">
-      This isn’t a traditional ESL class. There are <span class="line-through">no grammar drills</span> or textbooks here. Instead, I offer a <span class="font-semibold">relaxed, supportive space</span> where you can speak freely, make mistakes without judgment, and grow into the confident English speaker you want to be.
-      Grammar correction happens gently and only when needed for clarity. The focus is on <span class="font-bold text-[#254336]">communication and self-expression</span>, not perfection.
-      <span class="italic">We know we’re doing well when we understand each other and conversation feels natural!</span>
-    </p>
-    <p>
-      You’ll learn how native speakers really talk: <span class="italic">idioms, slang, expressions, humour</span>, and the flow of natural conversation. It’s not just about learning English… 
-      <span class="font-bold text-[#6B8A7A]">It's about using it to express you!</span>
-    </p>
-    <p>
-      We’ll talk about your <span class="font-semibold">life, goals, culture, and challenges</span> — and anything else you’d talk about with a trusted friend (with a bit more structure and professional guidance, of course!). 
-      <span class="italic">Here, you will receive guidance on how to navigate through language, culture, and relationships.</span>
-    </p>
-    <p>
-      Have a question you’re normally embarrassed to ask? Don’t be! You can run it by me first, in a <span class="font-semibold">safe space</span> where you can experiment, learn, and feel prepared for the real world.
-    </p>
-    <p>
-      Whether you're looking to feel <span class="font-semibold">more natural in conversation</span>, gain confidence, receive guidance, express yourself more clearly in social situations, or simply enjoy a <span class="italic">deeper connection</span> to the English-speaking world — I’m here to help.
-      I bring <span class="text-[#6B8A7A] font-semibold">patience, positivity</span>, and personal experience of what it feels like to be in your shoes.
-    </p>
-  </section>
+  <main class="max-w-5xl mx-auto">
 
-  <!-- Visual Section -->
-  <section class="section-wrapper px-6 bg-[#B7B597] grid grid-cols-1 md:grid-cols-2 items-center gap-10 fade-in">
-    <div class="flex justify-center">
-      <img src="relax.jpeg" alt="Relaxing Setup" class="w-full max-w-sm object-cover rounded-xl shadow-2xl hover:scale-105 transition-transform duration-300">
-    </div>
-    <div class="text-lg space-y-4">
-      <h3 class="text-3xl font-semibold text-[#254336]">We’ll show the world who you are.</h3>
-      <p class="text-[#254336]">Together, we’ll do more than just introduce you to the world — because the world needs your voice.</p>
-    </div>
-  </section>
-
-  <!-- How I Help You Improve Section -->
-  <section class="section-wrapper bg-[#F5F1E5] px-6 fade-in">
-    <div class="max-w-6xl mx-auto text-center mb-12">
-      <h2 class="text-3xl font-bold text-[#254336] mb-4">How I Help You Improve</h2>
-      <p class="text-lg text-[#254336]">A personalized, culturally-aware, and confidence-building approach to learning English.</p>
-    </div>
-  
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-      <!-- Box 1 -->
-      <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
-        <h3 class="text-xl font-semibold text-[#254336] mb-2">One-on-One Support</h3>
-        <p>Personalized coaching focused on your goals and challenges from the comfort of your own home!</p>
-      </div>
-  
-      <!-- Box 2 -->
-      <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
-        <h3 class="text-xl font-semibold text-[#254336] mb-2">Cultural Understanding</h3>
-        <p>Learn to navigate not just the language, but the culture behind it, so you can connect more authentically.</p>
-      </div>
-  
-      <!-- Box 3 -->
-      <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
-        <h3 class="text-xl font-semibold text-[#254336] mb-2">Real Conversation Practice</h3>
-        <p>Build confidence through natural, everyday English — the way people actually speak.</p>
-      </div>
-  
-      <!-- Box 4 -->
-      <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
-        <h3 class="text-xl font-semibold text-[#254336] mb-2">Authentic Self-Expression</h3>
-        <p>Learn to express your thoughts, feelings, and personality — not just words — so you feel more like yourself in English.</p>
-      </div>
-  
-      <!-- Box 5 -->
-      <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
-        <h3 class="text-xl font-semibold text-[#254336] mb-2">Friendly, Honest Advice</h3>
-        <p>Get guidance on communication, mindset, and daily life — like talking to a supportive friend who understands both cultures.</p>
-      </div>
-    </div>
-  </section>
-  <!-- Contact Section -->
-  <section class="section-wrapper px-6 bg-[#DAD3BE] text-center fade-in">
-    <h2 class="text-3xl font-semibold">Let’s Start Your Journey</h2>
-    <p class="mt-3 text-lg">Want to feel more natural and confident in English?</p>
-    <p class="mt-2 text-lg font-medium text-[#254336]">📱 WhatsApp me: <a href="https://wa.me/5511999999999" class="underline hover:text-[#6B8A7A] transition-colors duration-200" target="_blank">+55 11 99999-9999</a></p>
-    <p class="mt-4 text-lg font-medium text-[#254336]">📧 Email: <a href="mailto:nicolepimenta21@example.com" class="underline hover:text-[#6B8A7A] transition-colors duration-200">nicolepimenta21@gmail.com</a></p>
-    <img src="relax.jpeg" alt="Coach Portrait" class="mx-auto mt-10 w-40 h-40 object-cover rounded-full border-4 border-[#254336] shadow-xl hover:scale-105 transition-transform duration-300">
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="section-wrapper bg-[#F5F1E5] px-6 fade-in">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-[#254336] mb-4">What My Students Say</h2>
-      <p class="text-lg text-[#254336] max-w-3xl mx-auto">
-        Real feedback from learners worldwide who have experienced growth and confidence through my coaching.
+    <!-- About Section -->
+    <section id="about" class="section-wrapper px-6 bg-[#F5F1E5] text-[#254336] text-lg leading-relaxed fade-in space-y-8">
+      <h2 class="text-3xl font-bold text-center text-[#254336] mb-8">Hello and welcome to <span class="highlight">Manifesting Milestones</span> with Nicole!</h2>
+      <p>
+        I'm a <span class="font-semibold">Canadian</span> who's been living in <span class="font-semibold">Brazil</span> for some years now. As someone navigating life in a second language, I understand how frustrating it can be when you can’t express yourself the way you want to, especially when you're already at an <span class="italic">intermediate level</span> and craving more than just textbook English. 
+        <span class="font-semibold text-[#6B8A7A]">Let’s face it</span>, textbook English is helpful when you're a beginner, but you don’t want to sound robotic forever, do you?
       </p>
-    </div>
-  
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <!-- Testimonial Card -->
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"I have been talking with Nicole for a long time, and she is such an awesome tutor. Every conversation I learn new expressions and vocabularies. She is intelligent, laidback, and always in a good mood, which makes the conversation more pleasant. To sum it up, she is incredible."</p>
-        <p class="font-semibold text-[#6B8A7A]">Ricardo, Brazil</p>
+      <p>
+        I’m an <span class="font-semibold">online Communication and Self-Expression Coach</span>, and I specialize in helping people who want to express themselves more naturally and confidently in real-life English. Something I’ve learned from living in Brazil is that <span class="underline underline-offset-2">language and culture are inseparable</span>. It’s not just about sounding like a native; it’s about <span class="font-semibold">understanding natives when they speak</span>.
+      </p>
+      <p>
+        <span class="font-semibold">Communication goes both ways.</span> When you’re moving between cultures, you need more than grammar rules — you need <span class="text-[#6B8A7A] font-medium">cultural insight</span>. That’s where I come in.
+      </p>
+      <p>
+        Being familiar with both <span class="font-semibold">Brazilian and Canadian cultures</span>, I help bridge that gap. I understand the common challenges, misunderstandings, and unique expressions that can trip people up, and I help you navigate them with <span class="italic">clarity and confidence</span>.
+      </p>
+      <blockquote class="bg-white border-l-4 border-[#6B8A7A] p-5 shadow-sm rounded-md text-[#254336] italic">
+        This isn’t a traditional ESL class. There are <span class="line-through">no grammar drills</span> or textbooks here. Instead, I offer a <span class="font-semibold">relaxed, supportive space</span> where you can speak freely, make mistakes without judgment, and grow into the confident English speaker you want to be.
+        Grammar correction happens gently and only when needed for clarity. The focus is on <span class="font-bold">communication and self-expression</span>, not perfection.
+        <br /><br />
+        <span>We know we’re doing well when we understand each other and conversation feels natural!</span>
+      </blockquote>
+      <p>
+        You’ll learn how native speakers really talk: <span class="italic">idioms, slang, expressions, humour</span>, and the flow of natural conversation. It’s not just about learning English… 
+        <span class="font-bold text-[#6B8A7A]">It's about using it to express you!</span>
+      </p>
+      <p>
+        We’ll talk about your <span class="font-semibold">life, goals, culture, and challenges</span> — and anything else you’d talk about with a trusted friend (with a bit more structure and professional guidance, of course!). 
+        <span class="italic">Here, you will receive guidance on how to navigate through language, culture, and relationships.</span>
+      </p>
+      <p>
+        Have a question you’re normally embarrassed to ask? Don’t be! You can run it by me first, in a <span class="font-semibold">safe space</span> where you can experiment, learn, and feel prepared for the real world.
+      </p>
+      <p>
+        Whether you're looking to feel <span class="font-semibold">more natural in conversation</span>, gain confidence, receive guidance, express yourself more clearly in social situations, or simply enjoy a <span class="italic">deeper connection</span> to the English-speaking world — I’m here to help.
+        I bring <span class="text-[#6B8A7A] font-semibold">patience, positivity</span>, and personal experience of what it feels like to be in your shoes.
+      </p>
+    </section>
+
+    <!-- Visual Section -->
+    <section class="section-wrapper px-6 bg-[#B7B597] grid grid-cols-1 md:grid-cols-2 items-center gap-10 fade-in rounded-xl max-w-5xl mx-auto shadow-lg">
+      <div class="flex justify-center">
+        <img src="relax.jpeg" alt="Relaxing Setup" class="w-full max-w-sm object-cover rounded-xl shadow-2xl hover-scale" />
       </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Nicole conversa bastante e fala calmamente, sendo fácil entender. Adoro conversar com ela."</p>
-        <p class="font-semibold text-[#6B8A7A]">Lysiane, Brazil</p>
+      <div class="text-lg space-y-4 px-4">
+        <h3 class="text-3xl font-semibold text-[#254336]">We’ll show the world who you are.</h3>
+        <p class="text-[#254336]">Together, we’ll do more than just introduce you to the world — because the world needs your voice.</p>
       </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Very friendly, understanding, and patient."</p>
-        <p class="font-semibold text-[#6B8A7A]">Zeynep, Turkey</p>
+    </section>
+
+    <!-- How I Help You Improve Section -->
+    <section id="how" class="section-wrapper bg-[#F5F1E5] px-6 fade-in rounded-xl max-w-6xl mx-auto shadow-lg">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-[#254336] mb-4">How I Help You Improve</h2>
+        <p class="text-lg text-[#254336] max-w-3xl mx-auto">A personalized, culturally-aware, and confidence-building approach to learning English.</p>
       </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Ela é muito atenciosa e paciente. Deixa o aluno à vontade e conduz a aula de forma a obter o máximo de aproveitamento possível... Although I have a hard time understanding English, you left me very calm and the conversation flowed very well."</p>
-        <p class="font-semibold text-[#6B8A7A]">Cledson, Brazil</p>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <article class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
+          <h3 class="text-xl font-semibold text-[#254336] mb-2">One-on-One Support</h3>
+          <p>Personalized coaching focused on your goals and challenges from the comfort of your own home!</p>
+        </article>
+        <article class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
+          <h3 class="text-xl font-semibold text-[#254336] mb-2">Cultural Understanding</h3>
+          <p>Learn to navigate not just the language, but the culture behind it, so you can connect more authentically.</p>
+        </article>
+        <article class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
+          <h3 class="text-xl font-semibold text-[#254336] mb-2">Real Conversation Practice</h3>
+          <p>Build confidence through natural, everyday English — the way people actually speak.</p>
+        </article>
+        <article class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
+          <h3 class="text-xl font-semibold text-[#254336] mb-2">Authentic Self-Expression</h3>
+          <p>Learn to express your thoughts, feelings, and personality — not just words — so you feel more like yourself in English.</p>
+        </article>
+        <article class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 border-l-4 border-[#6B8A7A]">
+          <h3 class="text-xl font-semibold text-[#254336] mb-2">Friendly, Honest Advice</h3>
+          <p>Get guidance on communication, mindset, and daily life — like talking to a supportive friend who understands both cultures.</p>
+        </article>
       </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Nicole tem uma pronúncia excelente e é muito simpática. Corrije com suavidade e realmente me ajuda com a gramática e o vocabulário."</p>
-        <p class="font-semibold text-[#6B8A7A]">Lúcio, Brazil</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-wrapper px-6 bg-[#DAD3BE] text-center fade-in rounded-xl max-w-4xl mx-auto shadow-md">
+      <h2 class="text-3xl font-semibold mb-4">Let’s Start Your Journey</h2>
+      <p class="text-lg mb-2">Want to feel more natural and confident in English?</p>
+      <p class="text-lg font-medium text-[#254336] mb-1">
+        📱 WhatsApp me: 
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#4a6e56] focus-visible:outline-[#6B8A7A]">
+          +55 11 99999-9999
+        </a>
+      </p>
+      <p class="text-lg font-medium text-[#254336] mb-6">
+        📧 Email: 
+        <a href="mailto:nicolepimenta21@example.com" class="underline hover:text-[#4a6e56] focus-visible:outline-[#6B8A7A]">
+          nicolepimenta21@gmail.com
+        </a>
+      </p>
+      <img
+        src="relax.jpeg"
+        alt="Portrait of Nicole Pimenta, English Coach"
+        class="mx-auto w-40 h-40 object-cover rounded-full border-4 border-[#254336] shadow-xl hover-scale"
+      />
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-wrapper bg-[#F5F1E5] px-6 fade-in rounded-xl max-w-7xl mx-auto shadow-lg">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-[#254336] mb-4">What My Students Say</h2>
+        <p class="text-lg text-[#254336] max-w-4xl mx-auto">Kind words from people I've worked with all around the world.</p>
       </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Always learn so many new phrases from Nicole."</p>
-        <p class="font-semibold text-[#6B8A7A]">Sean, China</p>
+
+      <div class="grid gap-8 md:grid-cols-3 lg:grid-cols-4 max-w-7xl mx-auto">
+        <article class="testimonial-card bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between hover:shadow-lg transition duration-300">
+          <p class="italic text-[#254336] mb-4">"Funny, awesome, and very helpful. Really good learning experience, thank you!"</p>
+          <p class="font-semibold text-[#6B8A7A]">Derek, Hong Kong</p>
+        </article>
+
+        <article class="testimonial-card bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between hover:shadow-lg transition duration-300">
+          <p class="italic text-[#254336] mb-4">"Very good, kind teacher."</p>
+          <p class="font-semibold text-[#6B8A7A]">Charles, Taiwan</p>
+        </article>
+
+        <article class="testimonial-card bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between hover:shadow-lg transition duration-300">
+          <p class="italic text-[#254336] mb-4">"This teacher is the best! I always have classes with her. Nicole you’re the best!"</p>
+          <p class="font-semibold text-[#6B8A7A]">Pedro, Brazil</p>
+        </article>
+
+        <article class="testimonial-card bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between hover:shadow-lg transition duration-300">
+          <p class="italic text-[#254336] mb-4">"Nicole is a great writer. She helps me to review my writing and I got great feedback from her."</p>
+          <p class="font-semibold text-[#6B8A7A]">Saul, Mexico</p>
+        </article>
+
+        <article class="testimonial-card bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between hover:shadow-lg transition duration-300">
+          <p class="italic text-[#254336] mb-4">"She is a great teacher, I highly recommend her for anyone who wants to improve."</p>
+          <p class="font-semibold text-[#6B8A7A]">Hussain, Saudi Arabia</p>
+        </article>
+
+        <article class="testimonial-card bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between hover:shadow-lg transition duration-300">
+          <p class="italic text-[#254336] mb-4">"Nicole is great at everything…."</p>
+          <p class="font-semibold text-[#6B8A7A]">Yazeed, Saudi Arabia</p>
+        </article>
+
+        <article class="testimonial-card bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between col-span-full hover:shadow-lg transition duration-300">
+          <p class="italic text-[#254336] mb-4">
+            "Hi Nicole! I just passed the English job interview last week... You truly are the BEST English teacher I've ever had. You are a sweet, genuine, brave person. Everytime I talk to you... you make me feel safe & relaxed to speak English. You deserve all the best in the world!"
+          </p>
+          <p class="font-semibold text-[#6B8A7A]">Morgan, Taiwan</p>
+        </article>
       </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Nicole é uma pessoa fantástica. Ela tem paciência para ouvir e entender o que queremos expressar... Parece como amiga!"</p>
-        <p class="font-semibold text-[#6B8A7A]">Elenice, Brazil</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Nicole is amazing! She explains everything calmly and understanding... I feel like we’re close friends and I love to hear her stories!"</p>
-        <p class="font-semibold text-[#6B8A7A]">Giovanna, Brazil</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Her lesson is very comfortable. You will enjoy her lesson."</p>
-        <p class="font-semibold text-[#6B8A7A]">Yujin, Japan</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Funny, awesome, and very helpful. Really good learning experience, thank you!"</p>
-        <p class="font-semibold text-[#6B8A7A]">Derek, Hong Kong</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Very good, kind teacher."</p>
-        <p class="font-semibold text-[#6B8A7A]">Charles, Taiwan</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"This teacher is the best! I always have classes with her. Nicole you’re the best!"</p>
-        <p class="font-semibold text-[#6B8A7A]">Pedro, Brazil</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Nicole is a great writer. She helps me to review my writing and I got great feedback from her."</p>
-        <p class="font-semibold text-[#6B8A7A]">Saul, Mexico</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"She is a great teacher, I highly recommend her for anyone who wants to improve."</p>
-        <p class="font-semibold text-[#6B8A7A]">Hussain, Saudi Arabia</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between">
-        <p class="italic text-[#254336] mb-4">"Nicole is great at everything…."</p>
-        <p class="font-semibold text-[#6B8A7A]">Yazeed, Saudi Arabia</p>
-      </div>
-  
-      <div class="bg-white rounded-xl p-6 shadow-md border-l-4 border-[#6B8A7A] flex flex-col justify-between col-span-full">
-        <p class="italic text-[#254336] mb-4">"Hi Nicole! I just passed the English job interview last week... You truly are the BEST English teacher I've ever had. You are a sweet, genuine, brave person. Everytime I talk to you... you make me feel safe & relaxed to speak English. You deserve all the best in the world!"</p>
-        <p class="font-semibold text-[#6B8A7A]">Morgan, Taiwan</p>
-      </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
+
+  <!-- Back to top button -->
+  <button id="backToTopBtn" aria-label="Back to top">&#8679;</button>
+
   <!-- Footer -->
-  <footer class="bg-[#254336] text-center py-6 text-sm text-white">
-    © 2025 Manifest Milestones – All rights reserved.
+  <footer class="bg-[#254336] text-center py-6 text-sm text-white mt-16 select-none">
+    <p>© 2025 Manifest Milestones – All rights reserved.</p>
+    <div class="flex justify-center space-x-6 mt-3">
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-[#B7B597] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B7B597]">Facebook</a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-[#B7B597] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B7B597]">Instagram</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-[#B7B597] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B7B597]">LinkedIn</a>
+    </div>
   </footer>
 
+  <script>
+    // Hamburger menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('primary-navigation');
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true' || false;
+      menuBtn.setAttribute('aria-expanded', !expanded);
+      menuBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Back to top button logic
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'flex';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Intersection Observer for fade-in on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px"
+    };
+    const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+  </script>
 </body>
 </html>
